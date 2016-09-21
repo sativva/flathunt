@@ -4,20 +4,21 @@
 
       <h1 class="text-center title">Les recherches en cours</h1>
       <% color = %w(gray blue green yellow red orange)%>
-      <div class="searches">
-        <div class="row">
+      <div class="row">
+        <!-- <div class="searches"> -->
           <% @searches.each do |search| %>
+            <div class="col-sm-4">
             <%= link_to search_path(search.id) do %>
-              <div class="col-sm-4">
+
                 <div class="search-card" id=<%=color.sample%>>
                  <h1><%= search.username %></h1>
                  <h3><%= search.price %></h3>
                  <p><%= search.location %></p>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           <% end %>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>

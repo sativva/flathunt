@@ -1,0 +1,26 @@
+<%= simple_form_for(@search) do |f| %>
+  <%= f.error_notification %>
+
+  <% etages = %w(-1 rdc 1 2 3 4 5 6 7) %>
+  <% options =["cheminee", "parquet", "baignoire", "balcon", "terrasse", "toilette separee", "cave", "parking", "calme", "ancien", "gardien"] %>
+  <div class="form-inputs">
+    <%= f.input :username, label: 'Vos nom et prénom' %>
+    <%= f.input :email, label: 'Votre email' %>
+    <%= f.input :price, label: 'Prix maximum' %>
+    <%= f.input :location, label: 'Arrondissements', as: :check_boxes, display: "inline-block",  collection: 75001..75020, input_html: { multiple: true } %>
+    <%= f.input :floor, label: 'Etages', as: :check_boxes, display: "inline-block",  collection: etages, input_html: { multiple: true, checked: true }%>
+    <%= f.input :lift, label: 'Ascenseur indispensable ?' %>
+    <%= f.input :surface, label: 'Surface minimum' %>
+    <%= f.input :room, label: 'Nombre de pièce minimum', collection: 1..10 %>
+    <%= f.input :bedroom, label: 'Nombre de chambre minimum', collection: 1..10 %>
+    <%= f.input :to_renovate, label: 'Travaux', collection: ["Pourquoi pas", "Hors de question"] %>
+    <%= f.input :comment, label: 'Vos précisions' %>
+    <%= f.input :option, as: :text, label: 'Options', as: :check_boxes, display: "inline-block",  collection: options, input_html: { multiple: true } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "C'est parti !", class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+
+<% end %>
+

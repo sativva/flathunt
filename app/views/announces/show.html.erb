@@ -1,0 +1,87 @@
+<div class="container home" >
+  <div class="row">
+    <div class="col-xs-12 col-sm-5">
+
+      <p id="notice"><%= notice %></p>
+      <div class="display-center">
+      <%= link_to 'Modifier', edit_search_announce_path, class: "btn navigate navigate-grey" %>
+      <%= link_to 'Retour', search_path(@search), class: "btn navigate navigate-grey"  %>
+      <%= link_to 'Supprimer', search_announce_path, class: "btn navigate navigate-grey", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Lien de l'annonce", @announce.link, class: "btn btn-primary navigate", target: "_blank" %>
+      </div>
+      <div class="images">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner" role="listbox">
+
+            <% @announce.photos.split(",").each do |photo| %>
+              <div class="item">
+                <img src=<%= photo %> alt="..." class="photo-carousel">
+                <div class="carousel-caption">
+                </div>
+              </div>
+            <% end %>
+            <div class="item active">
+              <img src=<%= @announce.photos.split(",").last %> alt="...">
+              <div class="carousel-caption">
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+
+
+      <h1 class="price">
+        <%= @announce.price %> €
+      </h1>
+      <p>
+        <%= @announce.surface %> m2, <%= @announce.address %>, Etage: <%= @announce.floor %>, <%= @announce.room %> pièces
+      </p>
+      <p class="comment">
+        <%= @announce.comment %>
+      </p>
+
+      <p>
+        <% if !@announce.price.nil? %>
+        <strong>Frais de notaire:</strong> <%= @announce.price * 0.08 %> |
+        <% end %>
+        <% if !@announce.price.nil? && !@announce.surface.nil?%>
+        <%= @announce.price / @announce.surface %> €/m2 |
+        <% end %>
+         <%= @announce.lift ? "Il y a un ascenseur" : "Il n'y a pas d'ascenseur" %>
+      </p>
+
+      <p>
+        <strong>Agence:</strong>
+        <%= @announce.agency %>
+      </p>
+
+
+      <p>
+        <%# if @announce.to_renovate ? "Travaux à prévoir" : "" %>
+      </p>
+
+
+      <p>
+        <%# if @announce.option.any? ? @announce.option : "" %>
+      </p>
+
+
+    </div>
+  </div>
+</div>
+

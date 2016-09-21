@@ -1,0 +1,55 @@
+<div class="container home" >
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <p id="notice"><%= notice %></p>
+
+      <h1>Searches</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th>Location</th>
+            <th>Floor</th>
+            <th>Lift</th>
+            <th>Surface</th>
+            <th>Room</th>
+            <th>Bedroom</th>
+            <th>To renovate</th>
+            <th>Comment</th>
+            <th>Option</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @searches.each do |search| %>
+            <tr>
+              <td><%= search.price %></td>
+              <td><%= search.location %></td>
+              <td><%= search.floor %></td>
+              <td><%= search.lift %></td>
+              <td><%= search.surface %></td>
+              <td><%= search.room %></td>
+              <td><%= search.bedroom %></td>
+              <td><%= search.to_renovate %></td>
+              <td><%= search.comment %></td>
+              <td><%= search.option %></td>
+              <td><%= link_to 'Show', search %></td>
+              <td><%= link_to 'Edit', edit_search_path(search) %></td>
+              <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to 'New Search', new_search_path %>
+
+    </div>
+  </div>
+</div>
+
+
+

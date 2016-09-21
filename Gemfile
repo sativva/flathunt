@@ -8,6 +8,8 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise', github: 'plataformatec/devise'
 gem 'redis'
+gem 'geocoder'
+gem 'algoliasearch-rails'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -16,11 +18,12 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'mechanize', '~> 2.7', '>= 2.7.4'
 
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-  
+
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'

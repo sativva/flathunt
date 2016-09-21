@@ -1,0 +1,48 @@
+// Place all the styles related to the Announces controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.background-appt {
+  background-position: center;
+  height: 200px;
+  width: 100%;
+  border-radius: 8px;
+  margin: 10px 0 10px 0;
+  color: white;
+  p {
+    position: relative;
+    text-align: center;
+    top: 83px;
+    font-size: 20px;
+  }
+  &:hover {
+    opacity: 0.6;
+  }
+}
+.photo-carousel {
+  object-fit: cover;
+}
+.display-center {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+.navigate {
+  padding: 5px 10px;
+  margin: 0px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: solid 1px;
+  flex: 0 0 20%;
+}
+.navigate-grey {
+  background: #DFDBD8;
+}
+.comment {
+  border: solid 1px;
+  border-radius: 5px;
+  border-color: #DFDBD8;
+  padding: 10px;
+}
+.price {
+  margin-top: 3px;
+}

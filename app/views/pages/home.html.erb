@@ -1,2 +1,78 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://www.planete-deco.fr/wp-content/uploads/2012/01/ADUP2.jpg');">
+  <div class="banner-content">
+    <h1>Trouvez l'appartement de vos rêves</h1>
+    <p>My Flat s'occupe de tout</p>
+    <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Dites-nous ce que vous cherchez</a>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title text-center" id="myModalLabel">Soumettez-nous votre recherche</h3>
+        <h6 class="text-center">Nous reviendrons vers vous sous 48h, pour notre premier rendez-vous.</h6>
+      </div>
+      <div class="modal-body">
+        <%= render 'searches/form', search: @search %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal -->
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" id="blue" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+        <div class="card-description">
+          <h1>1 %</h1>
+          <p>Prix fixe, seulement en cas de signature de compromis.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" id="red" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+        <div class="card-description">
+          <h1>10 <i class="fa fa-home" aria-hidden="true"></i></h1>
+          <p>Présentation de 10 appartements dans le brief.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" id="orange" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+        <div class="card-description">
+          <h1><i class="fa fa-clock-o" aria-hidden="true"></i></h1>
+          <p>Un gain de temps, et votre parfait chez vous.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrapper step">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <h1 class="text-center">Quelles sont les étapes ?</h1>
+        <br>
+        <br>
+
+        <h3 class="left">Remplir le formulaire et définir le premier rendez-vous</h3>
+        <p class="left">En remplissant le formulaire, vous définissez vos besoins et envies. Nous vous recontactons afin de définir un rendez-vous</p>
+        <h3 class="right">Se rencontrer définir votre recherche</h3>
+        <p class="right">Nous nous rencontrons, idéalement chez vous, afin de nous impregner de vos goûts et attentes pour votre prochain bien. Nous signons <a>le mandat</a></p>
+        <h3 class="left">Nous visitons les meilleurs biens</h3>
+        <p class="left">Nous recherchons et visitons les biens en vente sur le marché. Particuliers, agences, offices notairiales, tout notre réseau est mis à contribution.</p>
+        <h3 class="right">Nous vous proposons de visiter le top 10 des biens de votre recherche</h3>
+        <p class="right">Nous séléctionnons seulement les appartements correspondants à votre brief, et vous les présentons lorsque votre emploi du temps vous le permet</p>
+        <h3 class="left">Vous faites une propostion, et signez un compromis de vente</h3>
+        <p class="left">Nous vous accompagnons jusqu'à la signature du compromis. Nous vous mettons en relation avec nos architectes, notaires, courtiers, afin de vous accompagner jusqu'au bout de votre achat.</p>
+
+      </div>
+    </div>
+  </div>
+</div>

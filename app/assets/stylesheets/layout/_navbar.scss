@@ -52,17 +52,17 @@
 .navbar-wagon-button {
   margin-left: 10px;
   padding: 0 20px;
-  border-radius: 20em;
+  border-radius: 5px;
   line-height: 40px;
-  background-color: #D23333;
-  color: white;
+  background-color: white;
+  color: $blue;
   font-size: 14px;
-  border: 2px solid #D23333;
+  border: 2px solid $blue;
 }
 .navbar-wagon-button:hover {
   color: white;
-  background: #D23333;
-  border-color: #ac2626;
+  background: $blue;
+  border-color: $blue;
 }
 
 /* Navbar search form */
@@ -128,4 +128,12 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+.logo {
+  border-radius: 25%;
+}
+.title-logo {
+  font-family: 'Nunito', sans-serif;
+  // font-family: 'Rubik', sans-serif;
+  // font-family: 'Comfortaa', cursive;
 }

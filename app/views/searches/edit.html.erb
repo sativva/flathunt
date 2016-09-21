@@ -1,0 +1,38 @@
+<div class="container home" >
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>Editing Search</h1>
+
+      <%= render 'form', search: @search %>
+
+      <%= link_to 'Show', @search %> |
+      <%= link_to 'Back', searches_path %>
+
+    </div>
+  </div>
+</div>
+
+
+<% if !@search.location.nil? %>
+  <%= javascript_tag do %>
+    <% @search.location.split(',').each do |p| %>
+      document.getElementById("<%="search_location_#{p}"%>").checked = true;
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if !@search.floor.nil? %>
+  <%= javascript_tag do %>
+    <% @search.floor.split(',').each do |p| %>
+      document.getElementById("<%="search_floor_#{p}"%>").checked = true;
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if !@search.option.nil? %>
+  <%= javascript_tag do %>
+    <% @search.option.split(',').each do |p| %>
+      document.getElementById("<%="search_option_#{p}"%>").checked = true;
+    <% end %>
+  <% end %>
+<% end %>

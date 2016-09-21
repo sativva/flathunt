@@ -1,0 +1,83 @@
+<div class="container home" >
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+      <p id="notice"><%= notice %></p>
+      <div class="display-center">
+      <%= link_to 'Ajouter un nouvel appartement', new_search_announce_path(@search), class: 'btn btn-primary navigate' %>
+
+      <% arrondissements = @search.location.gsub(/\ /,"").gsub('750', '7501') %>
+      <% se_loger_link = "http://www.seloger.com/list.htm?pxmin=#{@search.price.to_i - 200000}&pxmax=#{@search.price}&surfacemin=#{@search.surface}&idtt=2&idtypebien=1,2,9&ci=#{arrondissements}&tri=d_dt_crea&idpublication=&LISTING-LISTpg=1"%>
+      <%= link_to "Lancer la recherche se loger", se_loger_link, class: 'btn btn-primary navigate', target: "_blank" %>
+
+
+      <% arrondissement_bc = @search.location.gsub(/\ /,"").gsub('750', 'Paris%20750').split(',').join('%2C') %>
+      <% if !@price_max.nil?%>
+      <% le_bon_coin_link = "https://www.leboncoin.fr/ventes_immobilieres/offres/ile_de_france/?th=1&location=#{arrondissement_bc}&parrot=0&ps=#{@price_max - 4}&pe=#{@price_max}&sqs=#{@surface_bc}"%>
+      <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, class: 'btn btn-primary navigate', target: "_blank" %>
+      <% end %>
+      </div>
+      <%= link_to 'Modifiez', edit_search_path %> |
+      <%= link_to 'Retour', user_path(current_user) %>
+
+      <h1 class="text-center">La recherche de <%= @search.username%></h1>
+
+      <h3 class="text-justify"><%= @search.username%> cherche un bien à maximum <%= @search.price %> €, dans les arrondissements suivants :
+        <%= @search.location.split(",").join(', ') %>
+      </h3>
+
+      <p>
+        étages désirés : <%= @search.floor.split(",").join(', ') %>
+      </p>
+
+      <p>
+        <% if @search.lift %>
+        <strong>La présence d'un ascenseur indispensable</strong>
+        <% end %>
+      </p>
+      <p>
+        <% if @search.to_renovate %>
+        <strong>Les travaux ne dérangent pas <%= @search.username%> </strong>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Surface:</strong>
+        <%= @search.surface %>
+      </p>
+
+      <p>
+        <strong>Nombre de pièce:</strong>
+        <%= @search.room %>
+      </p>
+
+      <p>
+        <strong>Nombre de chambre:</strong>
+        <%= @search.bedroom %>
+      </p>
+
+         <p>
+        <strong>Options demandées:</strong>
+        <%= @search.option %>
+      </p>
+
+
+      <p>
+        <strong>Commentaires:</strong>
+        <%= @search.comment %>
+      </p>
+
+
+      <% Announce.where(search_id: @search).each do |a| %>
+        <%= link_to search_announce_path(@search, a), class: "announce-card" do %>
+
+        <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(234,239,181,0.24) 0%,rgba(186,180,5,0.43) 100%), url(<%= a.photos.split(',').first.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">
+        <p><%= a.address %></p>
+        </div>
+        <% end %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

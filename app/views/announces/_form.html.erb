@@ -1,0 +1,28 @@
+
+<%= simple_form_for([@search, @announce]) do |f| %>
+  <%= f.error_notification %>
+  <% options =["cheminée", "parquet", "baignoire", "balcon", "terrasse", "toilette séparée", "cave", "parking", "calme", "ancien", "gardien"] %>
+
+  <div class="form-inputs">
+    <%= f.input :link, label: "Lien (seloger)" %>
+    <%= f.input :price, label: "Prix" %>
+    <%= f.input :address, label: "Adresse" %>
+    <%= f.input :floor, label: "étage" %>
+    <%= f.input :photos, as: :text %>
+    <%= f.input :charge_by_month, label: "Charges /mois" %>
+    <%= f.input :lot, label: "Nombre de lots" %>
+    <%= f.input :agency, label: "Agence" %>
+    <%= f.input :date_of_publication, label: "Date de publication" %>
+    <%= f.input :lift, label: 'Ascenseur' %>
+    <%= f.input :surface, label: 'Surface' %>
+    <%= f.input :room, label: 'Nombre de pièce', collection: 1..10 %>
+    <%= f.input :bedroom, label: 'Nombre de chambre', collection: 1..10 %>
+    <%= f.input :to_renovate, as: :boolean, label: "A rénover" %>
+    <%= f.input :comment %>
+    <%= f.input :search_id, input_html: { value: @search.id } %>
+    <%= f.input :option, as: :text, label: 'Options', as: :check_boxes, display: "inline-block",  collection: options, input_html: { multiple: true } %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

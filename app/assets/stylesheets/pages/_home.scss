@@ -2,3 +2,20 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+a:hover {
+  text-decoration: none;
+}
+.left {
+  text-align: right;
+  margin-right: 50%;
+
+}
+.right {
+  text-align: left;
+  margin-left: 50%;
+}
+
+.step {
+  background: #EDE6E6;
+  padding-bottom: 100px;
+}

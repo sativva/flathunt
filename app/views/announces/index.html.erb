@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Announces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Address</th>
+      <th>Floor</th>
+      <th>Charge by month</th>
+      <th>Lot</th>
+      <th>Agency</th>
+      <th>Date of publication</th>
+      <th>Lift</th>
+      <th>Surface</th>
+      <th>Room</th>
+      <th>Bedroom</th>
+      <th>To renovate</th>
+      <th>Comment</th>
+      <th>Guard</th>
+      <th>Option</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @announces.each do |announce| %>
+      <tr>
+        <td><%= announce.price %></td>
+        <td><%= announce.address %></td>
+        <td><%= announce.floor %></td>
+        <td><%= announce.charge_by_month %></td>
+        <td><%= announce.lot %></td>
+        <td><%= announce.agency %></td>
+        <td><%= announce.date_of_publication %></td>
+        <td><%= announce.lift %></td>
+        <td><%= announce.surface %></td>
+        <td><%= announce.room %></td>
+        <td><%= announce.bedroom %></td>
+        <td><%= announce.to_renovate %></td>
+        <td><%= announce.comment %></td>
+        <td><%= announce.guard %></td>
+        <td><%= announce.option %></td>
+        <td><%#= link_to 'Show', search_announce_url(announce.id) %></td>
+        <td><%#= link_to 'Edit', edit_search_announce_path(announce) %></td>
+        <td><%#= link_to 'Destroy', search_announce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Announce', new_search_announce_path %>

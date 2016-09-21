@@ -12,9 +12,7 @@
 
 
       <% arrondissement_bc = @search.location.gsub(/\ /,"").gsub('750', 'Paris%20750').split(',').join('%2C') %>
-      <% if !@price_max.nigit init
-git add .
-git commit -m "Starting awesome development with Rails :)"l?%>
+      <% if !@price_max.nil?%>
       <% le_bon_coin_link = "https://www.leboncoin.fr/ventes_immobilieres/offres/ile_de_france/?th=1&location=#{arrondissement_bc}&parrot=0&ps=#{@price_max - 4}&pe=#{@price_max}&sqs=#{@surface_bc}"%>
       <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, class: 'btn btn-primary navigate', target: "_blank" %>
       <% end %>

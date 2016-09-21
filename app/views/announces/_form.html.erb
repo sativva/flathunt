@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <%= f.input :link, label: "Lien (seloger)" %>
     <%= f.input :price, label: "Prix" %>
+    <%= f.input :surface, label: 'Surface' %>
     <%= f.input :address, label: "Adresse" %>
     <%= f.input :floor, label: "étage" %>
     <%= f.input :photos, as: :text %>
@@ -14,7 +15,6 @@
     <%= f.input :agency, label: "Agence" %>
     <%= f.input :date_of_publication, label: "Date de publication" %>
     <%= f.input :lift, label: 'Ascenseur' %>
-    <%= f.input :surface, label: 'Surface' %>
     <%= f.input :room, label: 'Nombre de pièce', collection: 1..10 %>
     <%= f.input :bedroom, label: 'Nombre de chambre', collection: 1..10 %>
     <%= f.input :to_renovate, as: :boolean, label: "A rénover" %>

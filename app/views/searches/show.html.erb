@@ -71,12 +71,14 @@
       <% Announce.where(search_id: @search).each do |a| %>
         <%= link_to search_announce_path(@search, a), class: "announce-card" do %>
 
-        <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(234,239,181,0.24) 0%,rgba(186,180,5,0.43) 100%), url(<%= a.photos.split(',').first.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">
-        <p><%= a.address %></p>
+        <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(205,237,47,0.5) 0%,rgba(83,109,20,0.8) 50%), url(<%= a.photos.split(',').first.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">
+        <h1><%= a.address %></h1>
+        <p><%= a.status %></p>
+
         </div>
         <% end %>
       <% end %>
-
+<!-- background-image: linear-gradient(135deg, rgba(205,237,47,1) 0%,rgba(83,109,20,1) 50%,rgba(199,232,37,1) 100%,rgba(125,185,232,1) 100%,rgba(32,124,202,1) 100%) -->
 
     </div>
   </div>

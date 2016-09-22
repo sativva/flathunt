@@ -8,11 +8,14 @@
   border-radius: 8px;
   margin: 10px 0 10px 0;
   color: white;
-  p {
+  h1 {
     position: relative;
     text-align: center;
     top: 83px;
     font-size: 20px;
+  }
+  p {
+    margin: -12px 20px 11px;
   }
   &:hover {
     opacity: 0.6;

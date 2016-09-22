@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920131123) do
+ActiveRecord::Schema.define(version: 20160922102213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160920131123) do
     t.string   "link"
     t.json     "photos"
     t.integer  "search_id"
+    t.string   "status"
     t.index ["search_id"], name: "index_announces_on_search_id", using: :btree
   end
 

@@ -81,7 +81,7 @@ class AnnouncesController < ApplicationController
         photos = photos.join(',')
 
         @announce.update({
-          price: price * 1000,
+          price: price,
           surface: surface,
           # address: address,
           photos: photos,
@@ -128,6 +128,7 @@ class AnnouncesController < ApplicationController
         :comment,
         :guard,
         :option,
+        :status,
         :search_id)
     end
 end

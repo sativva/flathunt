@@ -80,7 +80,7 @@ class AnnouncesController < ApplicationController
         end
         photos = photos.join(',')
 
-        @announce = Announce.update({
+        @announce.update({
           price: price * 1000,
           surface: surface,
           # address: address,

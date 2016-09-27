@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
         end
       end
     else
-      Agency.where(@search.location.first).each do |agency|
+      Agency.where(postal: @search.location.first).each do |agency|
         if AgencyMailer.newsearch(agency,@search).deliver_now
           @count += 1
         end

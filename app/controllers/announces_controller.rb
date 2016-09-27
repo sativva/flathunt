@@ -190,8 +190,7 @@ class AnnouncesController < ApplicationController
             format.json { render json: @announce.errors, status: :unprocessable_entity }
           end
         end
-      else
-        raise
+
       end
     end
 

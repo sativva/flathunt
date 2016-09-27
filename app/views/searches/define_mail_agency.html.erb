@@ -1,0 +1,74 @@
+<div class="container home" >
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <%= render 'agency_mailer/bodymail', search: @search %>
+
+      <%= simple_form_for(@search, html: {id: :edit_text_for_agency }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :text_for_agency, label: 'ajouter du texte entre les deux paragraphes', input_html: {value: "Et plus précisément" }%>
+        </div>
+     <!--    <div class="form-actions">
+          <%#= f.button :submit, "C'est parti !", class: "btn btn-primary btn-lg btn-block" %>
+        </div> -->
+
+      <% end %>
+
+      <%= link_to "C'est parti !", search_mail_agency_path(params['search_id']), class: "btn btn-primary btn-lg btn-block", id: "form_email" %>
+
+      <h1 class="text-center">La recherche de <%= @search.username%></h1>
+
+      <h3 class="text-justify"><%= @search.username%> cherche un bien à maximum <%= @search.price %> €, dans les arrondissements suivants :
+        <%= @search.location.split(",").join(', ') %>
+      </h3>
+
+      <p>
+        étages désirés : <%= @search.floor.split(",").join(', ') %>
+      </p>
+
+      <p>
+        <% if @search.lift %>
+        <strong>La présence d'un ascenseur indispensable</strong>
+        <% end %>
+      </p>
+      <p>
+        <% if @search.to_renovate %>
+        <strong>Les travaux ne dérangent pas <%= @search.username%> </strong>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Surface:</strong>
+        <%= @search.surface %>
+      </p>
+
+      <p>
+        <strong>Nombre de pièce:</strong>
+        <%= @search.room %>
+      </p>
+
+      <p>
+        <strong>Nombre de chambre:</strong>
+        <%= @search.bedroom %>
+      </p>
+
+         <p>
+        <strong>Options demandées:</strong>
+        <%= @search.option %>
+      </p>
+
+
+      <p>
+        <strong>Commentaires:</strong>
+        <%= @search.comment %>
+      </p>
+    </div>
+  </div>
+</div>
+<script>
+  var form = document.getElementById("edit_text_for_agency");
+
+    document.getElementById("form_email").addEventListener("click", function () {
+      form.submit();
+    });
+</script>

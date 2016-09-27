@@ -48,7 +48,7 @@
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
-
+    </div>
     <!-- Dropdown list appearing on mobile only -->
       <div class="navbar-wagon-item hidden-md hidden-lg">
         <div class="dropdown">
@@ -56,14 +56,16 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <% if user_signed_in? %>
               <% if current_user.admin? %>
-            <li><%= link_to "Dashboard", user_path(current_user.id), class: "btn navbar-wagon-button" %></li>
-            <li><%= link_to "+ agence", new_agency_path, class: "btn navbar-wagon-button " %></li>
-            <li><<%= link_to "Nouvelle recherche", new_search_path, class: "btn navbar-wagon-button" %></li>
+                <li><%= link_to "Dashboard", user_path(current_user.id) %></li>
+                <li><%= link_to "+ agence", new_agency_path %></li>
+                <li><%= link_to "Nouvelle recherche", new_search_path %></li>
               <% end %>
+            <% else %>
+              <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path %></li>
             <% end %>
           </ul>
         </div>
       </div>
-    </div>
+
   </div>
 

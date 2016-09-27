@@ -1,25 +1,60 @@
-.badge-container {
-  position: relative;
-  font-size: 25px;
-  line-height: 30px;
-  width: 30px;
-  color: grey;
+
+@media (max-width: 700px) {
+  .badge-container {
+    position: relative;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    color: grey;
+  }
+  .badge {
+    position: relative;
+    top: -171px;
+    right: 0px;
+    font-size: 34px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    text-align: center;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
 }
-.badge {
-  position: relative;
-  top: -22px;
-  right: -184px;
-  font-size: 10px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 18px;
-  width: 18px;
-  text-align: center;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
+
+
+@media (min-width: 700px) {
+  .badge-container {
+    position: relative;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    color: grey;
+  }
+  .badge {
+    position: relative;
+    top: -22px;
+    right: -184px;
+    font-size: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
 }
+
+
+
+
+
+
 .badge-red {
   background: #EE5F5B;
 }

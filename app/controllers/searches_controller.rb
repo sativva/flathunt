@@ -5,6 +5,21 @@ class SearchesController < ApplicationController
   def index
     @searches = Search.all
   end
+  def define_mail_agency
+    @search = Search.find(params['search_id'])
+  end
+  def mail_agency
+    @count = 0
+    @search = Search.find(params['search_id'])
+    @search.location.split(',').each do |p|
+      Agency.where(postal: p).each do |agency|
+        if AgencyMailer.newsearch(agency,@search).deliver_now
+          @count += 1
+        end
+      end
+    end
+    redirect_to search_path(params['search_id']), notice: @count.to_s + ' mails was successfully sent.'
+  end
 
   def show
     @price_max = boncoin(@search.price)
@@ -42,6 +57,7 @@ class SearchesController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
       if @search.update(search_params_update)
         format.html { redirect_to @search, notice: 'Search was successfully updated.' }
@@ -80,6 +96,7 @@ class SearchesController < ApplicationController
   end
 
   def set_search
+
     @search = Search.find(params[:id])
   end
 
@@ -88,10 +105,16 @@ class SearchesController < ApplicationController
   end
 
   def search_params_update
-    @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
+    if !@search.floor.nil?
+      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
+    end
+    if !@search.location.nil?
     @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
+    end
+    if !@search.option.nil?
     @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
-    params.require(:search).permit(:price, :email, :username, :userid, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :option)
+    end
+    params.require(:search).permit(:price, :email, :username, :userid, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :text_for_agency, :option)
   end
 end
 

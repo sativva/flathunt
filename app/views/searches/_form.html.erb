@@ -15,6 +15,7 @@
     <%= f.input :bedroom, label: 'Nombre de chambre minimum', collection: 1..10 %>
     <%= f.input :to_renovate, label: 'Travaux', collection: ["Pourquoi pas", "Hors de question"] %>
     <%= f.input :comment, label: 'Vos précisions' %>
+    <%#= f.input :text_for_agency, label: 'agency-mailer' %>
     <%= f.input :option, as: :text, label: 'Options', as: :check_boxes, display: "inline-block",  collection: options, input_html: { multiple: true } %>
   </div>
 

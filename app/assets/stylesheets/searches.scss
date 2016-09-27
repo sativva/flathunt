@@ -15,38 +15,71 @@ div.form-group > label {
 .title {
   margin-bottom: 60px;
 }
-.search-card {
-  border-radius: 5px;
-  border: solid 1px;
-  border-color: white;
-  padding: 10px;
-  margin-top: 5px;
-  text-align: center;
-  height: 200px;
-  width: 200px;
-  color: white;
-  flex: inline-block;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  p {
-    position: absolute;
-    bottom: 2px;
-    width: 180px;
-    word-wrap:break-word;
+
+@media (max-width: 700px) {
+  .search-card {
+    border-radius: 5px;
+    border: solid 1px;
+    border-color: white;
+    padding: 10px;
+    margin-top: 5px;
+    text-align: center;
+    height: 200px;
+    color: white;
+    flex: inline-block;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    p {
+      bottom: 2px;
+      word-wrap:break-word;
+    }
+    h3 {
+      bottom: 58px;
+    }
+    h1 {
+      font-size: 30px;
+      top: -15px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
   }
-  h3 {
-    position: absolute;
-    bottom: 58px;
-    width: 180px;
-  }
-  h1 {
-    font-size: 30px;
-    width: 180px;
-    position: absolute;
-    top: -15px;
-  }
-  &:hover {
-    opacity: 0.8;
+}
+
+@media (min-width: 700px) {
+  .search-card {
+    border-radius: 5px;
+    border: solid 1px;
+    border-color: white;
+    padding: 10px;
+    margin-top: 5px;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+    color: white;
+    flex: inline-block;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    p {
+      position: absolute;
+      bottom: 2px;
+      width: 180px;
+      word-wrap:break-word;
+    }
+    h3 {
+      position: absolute;
+      bottom: 58px;
+      width: 180px;
+    }
+    h1 {
+      font-size: 30px;
+      width: 180px;
+      position: absolute;
+      top: -15px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 .announce-card {

@@ -17,6 +17,8 @@
       <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, class: 'btn btn-primary navigate', target: "_blank" %>
       <% end %>
       </div>
+      <% agency = Agency.last %>
+      <%= link_to 'Envoyer un mail a toutes les agences', search_define_mail_agency_path(@search) %> |
       <%= link_to 'Modifiez', edit_search_path %> |
       <%= link_to 'Retour', user_path(current_user) %>
 
@@ -72,7 +74,7 @@
         <%= link_to search_announce_path(@search, a), class: "announce-card" do %>
 
         <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(205,237,47,0.5) 0%,rgba(83,109,20,0.8) 50%), url(<%= a.photos.split(',').first.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">
-        <h1><%= a.address %></h1>
+        <h1><%= a.address.upcase %></h1>
         <p><%= a.status %></p>
 
         </div>

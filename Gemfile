@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 
 group :development, :test do
+  gem "letter_opener"
   gem 'binding_of_caller'
   gem 'better_errors'
 

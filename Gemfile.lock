@@ -49,6 +49,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
     algoliasearch (1.11.0)
       httpclient (~> 2.8.2)
       json (>= 1.5.1)
@@ -97,6 +98,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -227,6 +232,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
   listen (~> 3.0.5)
   mechanize (~> 2.7, >= 2.7.4)
   pg

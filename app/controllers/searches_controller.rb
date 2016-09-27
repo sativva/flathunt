@@ -11,8 +11,16 @@ class SearchesController < ApplicationController
   def mail_agency
     @count = 0
     @search = Search.find(params['search_id'])
-    @search.location.split(',').each do |p|
-      Agency.where(postal: p).each do |agency|
+    if @search.location.split(',').length >=2
+      @search.location.split(',').each do |p|
+        Agency.where(postal: p).each do |agency|
+          if AgencyMailer.newsearch(agency,@search).deliver_now
+            @count += 1
+          end
+        end
+      end
+    else
+      Agency.where(@search.location.first).each do |agency|
         if AgencyMailer.newsearch(agency,@search).deliver_now
           @count += 1
         end

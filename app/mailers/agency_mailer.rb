@@ -9,7 +9,7 @@ default from: "t0649840679@gmail.com"
     @greeting = "Hi"
     @agency = agency
     @search = search
-    delivery_options = { address: 'smtp.gmail.com' }
+
 
     mail(to: @agency.mail, subject: 'Nouvelle recherche')
   end

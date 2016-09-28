@@ -19,6 +19,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
+gem 'postmark-rails'
 
 group :development, :test do
   gem "letter_opener"

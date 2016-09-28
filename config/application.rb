@@ -11,9 +11,6 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
-config.action_mailer.delivery_method = :postmark
-config.action_mailer.postmark_settings = { :api_token => "7022e888-702e-4310-9300-44531b99ba82" }
-
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

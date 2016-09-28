@@ -9,6 +9,9 @@ class AgencyMailer < ApplicationMailer
     @greeting = "Hi"
     @agency = agency
     @search = search
+    delivery_options = { user_name: 't0649840679',
+                         password: 'street75',
+                         address: 'smtp.gmail.com' }
 
     mail(to: @agency.mail, subject: 'Nouvelle recherche')
   end

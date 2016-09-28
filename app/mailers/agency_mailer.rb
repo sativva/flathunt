@@ -9,7 +9,7 @@ class AgencyMailer < ApplicationMailer
     @greeting = "Hi"
     @agency = agency
     @search = search
-    delivery_options = { user_name: 't0649840679',
+    delivery_options = { user_name: 't0649840679@gmail.com',
                          password: 'street75',
                          address: 'smtp.gmail.com' }
 

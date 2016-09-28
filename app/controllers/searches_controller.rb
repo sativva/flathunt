@@ -8,6 +8,7 @@ class SearchesController < ApplicationController
   def define_mail_agency
     @search = Search.find(params['search_id'])
   end
+
   def mail_agency
     @count = 0
     @search = Search.find(params['search_id'])

@@ -10,6 +10,6 @@ class AgencyMailer < ApplicationMailer
     @agency = agency
     @search = search
 
-    mail(from: @search.email, to: @agency.mail, subject: 'Nouvelle recherche')
+    mail(to: @agency.mail, subject: 'Nouvelle recherche')
   end
 end

@@ -1,5 +1,5 @@
 class AgencyMailer < ApplicationMailer
-
+default from: "t0649840679@gmail.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -9,9 +9,7 @@ class AgencyMailer < ApplicationMailer
     @greeting = "Hi"
     @agency = agency
     @search = search
-    delivery_options = { user_name: 't0649840679@gmail.com',
-                         password: 'street75',
-                         address: 'smtp.gmail.com' }
+    delivery_options = { address: 'smtp.gmail.com' }
 
     mail(to: @agency.mail, subject: 'Nouvelle recherche')
   end

@@ -14,7 +14,7 @@
 
       <% end %>
 
-      <%= link_to "C'est parti !", search_mail_agency_path(params['search_id']), class: "btn btn-primary btn-lg btn-block", id: "form_email" %>
+      <%= link_to "C'est parti !", search_mail_agency_url(params['search_id']), class: "btn btn-primary btn-lg btn-block", id: "form_email" %>
 
       <h1 class="text-center">La recherche de <%= @search.username%></h1>
 

@@ -18,7 +18,7 @@
       <% end %>
       </div>
       <% agency = Agency.last %>
-      <%= link_to 'Envoyer un mail a toutes les agences', search_define_mail_agency_path(@search) %> |
+      <%= link_to 'Envoyer un mail a toutes les agences', search_define_mail_agency_url(@search) %> |
       <%= link_to 'Modifiez', edit_search_path %> |
       <%= link_to 'Retour', user_path(current_user) %>
 

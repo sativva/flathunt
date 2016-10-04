@@ -10,7 +10,6 @@ default from: "t0649840679@gmail.com"
     @agency = agency
     @search = search
 
-
     mail(to: @agency.mail, subject: 'Nouvelle recherche')
   end
 end

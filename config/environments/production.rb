@@ -58,16 +58,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "flathunt_#{Rails.env}"
   # config.action_mailer.perform_caching = false
 
-  # config.action_mailer.default_url_options = { :host => "http://mylovelyplace.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "http://mylovelyplace.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
+  # ActionMailer::Base.default_content_type = "text/html"
+
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => ENV['gmail_username'],
-    :password             => ENV['gmail_password'],
+    :domain               => "mylovelyplace.herokuapp.com",
+    :user_name            => 't0649840679@gmail.com'#ENV['gmail_username'],
+    :password             => 'street75'#ENV['gmail_password'],
     :authentication       => "plain",
-    :enable_starttls_auto => true
+
   }
   # or your custom domain name eg. "www.yourdomain.com"
 

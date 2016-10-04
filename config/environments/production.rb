@@ -68,8 +68,8 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "mylovelyplace.herokuapp.com",
-    :user_name            => 't0649840679@gmail.com'#ENV['gmail_username'],
-    :password             => 'street75'#ENV['gmail_password'],
+    :user_name            => 't0649840679@gmail.com',#ENV['gmail_username'],
+    :password             => 'street75',#ENV['gmail_password'],
     :authentication       => "plain"
 
   }

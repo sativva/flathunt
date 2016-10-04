@@ -56,18 +56,18 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "flathunt_#{Rails.env}"
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
 
-
+  # config.action_mailer.default_url_options = { :host => "http://mylovelyplace.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.gmail.com",
-   :port                 => 25,
-   :user_name            => ENV['gmail_username'],
-   :password             => ENV['gmail_password'],
-   :authentication       => "plain",
-   :enable_starttls_auto => true
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => ENV['gmail_username'],
+    :password             => ENV['gmail_password'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
   }
   # or your custom domain name eg. "www.yourdomain.com"
 

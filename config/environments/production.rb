@@ -78,7 +78,7 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
-  # }
+  }
   # config.action_mailer.delivery_method = :postmark
   # config.action_mailer.postmark_settings = { :api_token => "7022e888-702e-4310-9300-44531b99ba82" }
 

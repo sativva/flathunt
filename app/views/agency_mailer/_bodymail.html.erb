@@ -4,7 +4,7 @@
         <br>
         <br>
 
-  Je m'appelle <%= @search.username %>, et je recherche un appartement d'au moins <%= @search.surface %> m2 carrez, dans les arrondissements suivants : <%= @search.location %>. Mon budget max avec les frais de notaires est de <%= @search.price %> €.  <br>
+  Je m'appelle <%= @search.username.split(' ').first %>, et je recherche un appartement d'au moins <%= @search.surface %> m2 carrez, dans les arrondissements suivants : <%= @search.location %>. Mon budget max avec les frais de notaires est de <%= @search.price %> €.  <br>
   <br>
   <% if !@search.text_for_agency.nil? %>
   <%= @search.text_for_agency %>
@@ -19,7 +19,7 @@
   Je vous souhaite une très belle journée.
   <br>
   <br>
-  <%= @search.username %>.
+  <%= @search.username.split(' ').first %>.
   <br>
   06 49 84 06 79
   </p>

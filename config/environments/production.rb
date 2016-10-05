@@ -63,12 +63,14 @@ Rails.application.configure do
   # # ActionMailer::Base.default_content_type = "text/html"
 
   # # SMTP settings for gmail
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { :api_token => "7022e888-702e-4310-9300-44531b99ba82" }
 
+
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "mylovelyplace.herokuapp.com" }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "mylovelyplace.herokuapp.com" }
   # or your custom domain name eg. "www.yourdomain.com"
 
 

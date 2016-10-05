@@ -66,8 +66,12 @@ class AnnouncesController < ApplicationController
 
   def visited_mail
     @announce = Announce.find(params['announce_id'])
-    AnnounceMailer.visited(@announce, @search).deliver_now
-    redirect_to search_announce_path(@search, @announce)
+    if AnnounceMailer.visited(@announce, @search).deliver_now
+    redirect_to search_announce_path(@search, @announce), notice: 'Votre mail est corectement parti.'
+    else
+    redirect_to search_announce_path(@search, @announce), notice: "Votre mail n'est pascorectement parti."
+  end
+
   end
 
   private

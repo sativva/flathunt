@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 gem 'postmark-rails'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   gem "letter_opener"

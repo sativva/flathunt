@@ -20,6 +20,7 @@
     <%= f.input :to_renovate, as: :boolean, label: "A rénover" %>
     <%= f.input :status, label: "Statut:"%>
     <%= f.input :comment %>
+    <%= f.input :scd_visit %>
     <%= f.input :search_id, input_html: { value: @search.id } %>
     <%= f.input :option, as: :text, label: 'Options', as: :check_boxes, display: "inline-block",  collection: options, input_html: { multiple: true } %>
   </div>

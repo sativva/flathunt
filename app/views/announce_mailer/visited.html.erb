@@ -4,11 +4,11 @@
 
 <div class="mail" style="text-align: center; font-family: helvetica; background-color: #F5F5F5; padding-top: 50px;
 ">
-<%# if @announce.scd_visit? %>
+<% if @announce.scd_visit? %>
 <h1>A voir de toute urgence !</h1>
-<%# else %>
+<% else %>
 <h1>Mais ca n'a rien donné</h1>
-<%# end %>
+<% end %>
 <div class="col-xs-12 col-sm-6">
   <h1 class="price">
     <%= @announce.price %> €

@@ -228,7 +228,8 @@ class AnnouncesController < ApplicationController
         :guard,
         :option,
         :status,
-        :search_id)
+        :search_id,
+        :scd_visit)
     end
 end
 

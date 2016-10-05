@@ -116,14 +116,16 @@ class SearchesController < ApplicationController
   end
 
   def search_params_update
-    if !@search.floor.nil?
-      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
-    end
-    if !@search.location.nil?
-    @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
-    end
-    if !@search.option.nil?
-    @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+    if !params['search'].nil?
+      if !@search.floor.nil? && !params['search']['floor'].nil?
+        @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
+      end
+      if !@search.location.nil? && !params['search']['location'].nil?
+      @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
+      end
+      if !@search.option.nil? && !params['search']['option'].nil?
+      @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+      end
     end
     params.require(:search).permit(:price, :email, :username, :userid, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :text_for_agency, :option)
   end

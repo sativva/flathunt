@@ -16,7 +16,7 @@ class SearchesController < ApplicationController
     if @search.location.split(',').length >=2
       @search.location.split(',').each do |p|
         Agency.where(postal: p).each do |agency|
-          if AgencyMailer.newsearch(agency,@search).deliver_now
+          if AgencyMailer.newsearch(agency, @search).deliver_now
             @count += 1
           end
         end
@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
     else
       Agency.where(postal: @search.location).each do |agency|
 
-        if AgencyMailer.newsearch(agency,@search).deliver_now
+        if AgencyMailer.newsearch(agency, @search).deliver_now
           @count += 1
         end
       end

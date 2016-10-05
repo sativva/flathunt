@@ -64,6 +64,12 @@ class AnnouncesController < ApplicationController
     end
   end
 
+  def visited_mail
+    @announce = Announce.find(params['announce_id'])
+    AnnounceMailer.visited(@announce, @search).deliver_now
+    redirect_to search_announce_path(@search, @announce)
+  end
+
   private
 
     def announce_scrap_seloger(link)

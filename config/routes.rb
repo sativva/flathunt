@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :searches do
-    resources :announces
+    resources :announces do
+       get 'visited_mail'
+       end
+
     get 'mail_agency'
     get 'define_mail_agency'
   end

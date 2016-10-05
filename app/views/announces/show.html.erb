@@ -9,28 +9,26 @@
       <%= link_to 'Supprimer', search_announce_path, class: "btn navigate navigate-grey", method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to "Lien de l'annonce", @announce.link, class: "btn btn-primary navigate", target: "_blank" %>
       </div>
-      <div class="images">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
+      <div class="images"> <!-- Carousel -->
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
             <% if !@announce.photos.nil?%>
-            <% @announce.photos.split(",").each do |photo| %>
-              <div class="item">
-                <img src=<%= photo %> alt="..." class="photo-carousel">
+              <% @announce.photos.split(",").each do |photo| %>
+                <div class="item">
+                  <img src=<%= photo %> alt="..." class="photo-carousel">
+                  <div class="carousel-caption">
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="item active">
+                <img src=<%= @announce.photos.split(",").last %> alt="...">
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
-
-            <div class="item active">
-              <img src=<%= @announce.photos.split(",").last %> alt="...">
-              <div class="carousel-caption">
-              </div>
-            </div>
-            <% end %>
-
           </div>
-
           <!-- Controls -->
           <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -42,13 +40,16 @@
           </a>
         </div>
       </div>
-    </div>
+    </div><!-- Carousel -->
+
     <div class="col-xs-12 col-sm-6">
-
-
       <h1 class="price">
         <%= @announce.price %> €
       </h1>
+      <h3> <%= @announce.status %></h3>
+
+
+      <%= link_to 'Envoyer un mail "visité"', search_announce_visited_mail_url(@announce.search_id, @announce), class: "btn navigate navigate-grey" %>
       <p>
         <%= @announce.surface %> m2, <%= @announce.address %>, Etage: <%= @announce.floor %>, <%= @announce.room %> pièces
       </p>

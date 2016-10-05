@@ -65,7 +65,6 @@ Rails.application.configure do
   # # SMTP settings for gmail
   #
   #
-
   config.action_mailer.default_url_options = { :host => 'mylovelyplace.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
@@ -76,7 +75,8 @@ Rails.application.configure do
     :user_name            => ENV['gmail_username'],
     :password             => ENV['gmail_password'],
     :authentication       => "plain",
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
     # address: "smtp.gmail.com",
     # port: 587,
     # domain: "mylovelyplace.herokuapp.com",

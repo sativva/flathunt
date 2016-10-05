@@ -69,14 +69,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.sendgrid.net",
-    :port                 => 587,
-    :user_name            => ENV['SENDGRID_USERNAME'],
-    :password             => ENV['SENDGRID_PASSWORD'],
-    :authentication       => "plain",
-    :enable_starttls_auto => true,
-    :openssl_verify_mode  => 'none'
+  # config.action_mailer.smtp_settings = {
+    # :address              => "smtp.sendgrid.net",
+    # :port                 => 587,
+    # :user_name            => ENV['SENDGRID_USERNAME'],
+    # :password             => ENV['SENDGRID_PASSWORD'],
+    # :authentication       => "plain",
+    # :enable_starttls_auto => true,
+    # :openssl_verify_mode  => 'none'
     # address: "smtp.gmail.com",
     # port: 587,
     # domain: "mylovelyplace.herokuapp.com",
@@ -84,7 +84,8 @@ Rails.application.configure do
     # enable_starttls_auto: true,
     # user_name: ENV["GMAIL_USERNAME"],
     # password: ENV["GMAIL_PASSWORD"]
-  }
+  # }
+
 
   # config.action_mailer.delivery_method = :postmark
   # config.action_mailer.postmark_settings = { :api_token => "7022e888-702e-4310-9300-44531b99ba82" }

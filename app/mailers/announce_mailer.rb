@@ -1,5 +1,5 @@
 class AnnounceMailer < ApplicationMailer
-  default from: 't0649840679@gmail.com'
+  # default from: 't0649840679@gmail.com'
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

@@ -11,10 +11,28 @@
       <%= link_to "Lancer la recherche se loger", se_loger_link, class: 'btn btn-primary navigate', target: "_blank" %>
 
 
-      <% arrondissement_bc = @search.location.gsub(/\ /,"").gsub('750', 'Paris%20750').split(',').join('%2C') %>
-      <% if !@price_max.nil?%>
-      <% le_bon_coin_link = "https://www.leboncoin.fr/ventes_immobilieres/offres/ile_de_france/?th=1&location=#{arrondissement_bc}&parrot=0&ps=#{@price_max - 4}&pe=#{@price_max}&sqs=#{@surface_bc}"%>
-      <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, class: 'btn btn-primary navigate', target: "_blank" %>
+
+
+
+
+
+      <% if @search.location.split(',').length > 3 %>
+        <% onclick = ""%>
+        <% le_bon_coin_link =  "javascript:void(0);"%>
+        <% @search.location.split(',').each_slice(3) do |slice| %>
+          <% arrondissement_bc = slice.join(',').gsub(/\ /,"").gsub('750', 'Paris%20750').split(',').join('%2C') %>
+          <% if !@price_max.nil?%>
+          <% bou = "https://www.leboncoin.fr/ventes_immobilieres/offres/ile_de_france/?th=1&location=#{arrondissement_bc}&parrot=0&ps=#{@price_max - 4}&pe=#{@price_max}&sqs=#{@surface_bc}"%>
+          <% onclick << "window.open('#{bou}');"%>
+          <% end %>
+        <% end %>
+        <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, onclick: onclick, class: 'btn btn-primary navigate', target: "_blank" %>
+      <% else %>
+        <% arrondissement_bc = @search.location.gsub(/\ /,"").gsub('750', 'Paris%20750').split(',').join('%2C') %>
+        <% if !@price_max.nil?%>
+        <% le_bon_coin_link = "https://www.leboncoin.fr/ventes_immobilieres/offres/ile_de_france/?th=1&location=#{arrondissement_bc}&parrot=0&ps=#{@price_max - 4}&pe=#{@price_max}&sqs=#{@surface_bc}"%>
+        <%= link_to "Lancer la recherche le bon coin", le_bon_coin_link, class: 'btn btn-primary navigate', target: "_blank" %>
+        <% end %>
       <% end %>
       </div>
       <% agency = Agency.last %>
@@ -70,7 +88,7 @@
       </p>
 
 
-      <% Announce.where(search_id: @search).each do |a| %>
+      <% @announces.each do |a| %>
         <%= link_to search_announce_path(@search, a), class: "announce-card" do %>
 
         <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(205,237,47,0.5) 0%,rgba(83,109,20,0.8) 50%), url(<%= a.photos.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">

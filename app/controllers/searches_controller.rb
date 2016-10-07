@@ -35,6 +35,7 @@ class SearchesController < ApplicationController
   def show
     @price_max = boncoin(@search.price)
     @surface_bc = boncoin_surface(@search.surface)
+    @announces = Announce.where(search_id: @search).reverse
   end
 
   def new

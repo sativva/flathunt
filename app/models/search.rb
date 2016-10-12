@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-  has_many :announces
+  has_many :announces, dependent: :destroy
   accepts_nested_attributes_for :announces
   validates :username, presence: true, uniqueness: true#, length: { maximum: 100 }
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

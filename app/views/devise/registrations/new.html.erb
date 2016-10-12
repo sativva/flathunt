@@ -3,13 +3,18 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h2>Sign up</h2>
-
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
-
         <div class="form-inputs">
+        <% if !session['form_data'].nil? %>
+          <%= f.input :user_name, required: true, autofocus: true, input_html: {value: session['form_data']['search']['username'] } %>
+          <%= f.input :email, required: true, autofocus: true, input_html: {value: session['form_data']['search']['email'] }  %>
+        <% else %>
           <%= f.input :user_name, required: true, autofocus: true %>
           <%= f.input :email, required: true, autofocus: true %>
+        <% end %>
+
+
           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
           <%= f.input :password_confirmation, required: true %>
         </div>

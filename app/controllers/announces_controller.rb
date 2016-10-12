@@ -77,10 +77,17 @@ class AnnouncesController < ApplicationController
   private
 
     def announce_scrap_seloger(link)
+      user_agent = Announce.random_desktop_user_agent
+      user_agent_mechanize = Announce.random_desktop_user_agent_mechanize
+      proxy = "http://111.7.162.48:8080"
       # seloger ---------------------
       if link.include?('seloger')
         # raise
         agent = Mechanize.new
+        # agent.user_agent_alias = user_agent_mechanize
+        # agent.set_proxy('212.47.237.30', 9016)
+
+
         agent.get(link)
         if !agent.page.forms[1].nil?
           price = agent.page.forms[1][name: "financement-prix"].to_i * 1000
@@ -130,7 +137,7 @@ class AnnouncesController < ApplicationController
       # le bon coin ---------------
       elsif link.include?('leboncoin')
 
-        html_file = open(link)
+        html_file = open(link,'User-Agent' => user_agent)
         html_doc = Nokogiri::HTML(html_file)
 
         price = html_doc.search('.item_price').first.attributes['content'].value

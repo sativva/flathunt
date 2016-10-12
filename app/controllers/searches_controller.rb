@@ -2,6 +2,7 @@ class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [ :new, :create ]
 
+
   def index
     @searches = Search.all
   end
@@ -39,31 +40,44 @@ class SearchesController < ApplicationController
   end
 
   def new
-    @search = Search.new
+    if session[:form_data]
+      Search.create(session[:form_data]['search'])
+      redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
+    else
+      @search = Search.new
+    end
   end
 
   def edit
   end
 
   def create
-    @search = Search.new(search_params)
-    @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
-    @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
-    @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+    if current_user.nil?
+       # Store the form data in the session so we can retrieve it after login
+       session[:form_data] = params
+       # Redirect the user to register/login
+       redirect_to new_user_registration_path
 
-    respond_to do |format|
-      if @search.save
-        format.html {
-          if user_signed_in?
-            redirect_to @search, notice: 'Search was successfully created.'
-          else
-            redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
-          end
-          }
-        format.json { render :show, status: :created, location: @search }
-      else
-        format.html { render :new }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
+    else
+      @search = Search.new(search_params)
+      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
+      @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
+      @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+
+      respond_to do |format|
+        if @search.save
+          format.html {
+            if user_signed_in?
+              redirect_to @search, notice: 'Search was successfully created.'
+            else
+              redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
+            end
+            }
+          format.json { render :show, status: :created, location: @search }
+        else
+          format.html { render :new }
+          format.json { render json: @search.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

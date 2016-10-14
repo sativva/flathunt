@@ -57,10 +57,9 @@ class SearchesController < ApplicationController
        session[:form_data] = params
        # Redirect the user to register/login
        redirect_to new_user_registration_path
-
     else
-
       @search = Search.new(search_params)
+      binding.pry
       @search.user_id = current_user.id
       @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
       @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")

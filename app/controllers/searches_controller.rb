@@ -59,15 +59,15 @@ class SearchesController < ApplicationController
        redirect_to new_user_registration_path
 
     else
-      binding.pry
+
       @search = Search.new(search_params)
-      # @search.user_id = current_user.id
+      @search.user_id = current_user.id
       @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
       @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
       @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
 
       respond_to do |format|
-        binding.pry
+
         if @search.save
           format.html {
             if user_signed_in?

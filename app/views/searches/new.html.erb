@@ -3,9 +3,9 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1>Nouvelle recherche</h1>
 
-      <%= render 'form', search: @search %>
+      <%= render 'form', user: @user, search: @search %>
 
-      <%= link_to 'Back', searches_path %>
+      <%= link_to 'Back', user_searches_path %>
     </div>
   </div>
 </div>

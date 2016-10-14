@@ -4,10 +4,8 @@ class AgencyMailer < ApplicationMailer
   #
   #   en.agency_mailer.newsearch.subject
   #
-  def newsearch(agency, search)
-    @agency = agency
+  def newsearch(agency, user, search)
     @search = search
-
-    mail(to: @agency.mail, subject: 'Nouvelle recherche')
+    mail(from: user.email, to: agency.mail, subject: 'Nouvelle recherche')
   end
 end

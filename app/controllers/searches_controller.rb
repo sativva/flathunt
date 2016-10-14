@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  before_action :set_user
   before_action :set_search, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [ :new, :create ]
 
@@ -13,24 +14,22 @@ class SearchesController < ApplicationController
   def mail_agency
     @count = 0
     @search = Search.find(params['search_id'])
-
     if @search.location.split(',').length >=2
       @search.location.split(',').each do |p|
         Agency.where(postal: p).each do |agency|
-          if AgencyMailer.newsearch(agency, @search).deliver_now
+          if AgencyMailer.newsearch(agency, @search, @user).deliver_now
             @count += 1
           end
         end
       end
     else
       Agency.where(postal: @search.location).each do |agency|
-
-        if AgencyMailer.newsearch(agency, @search).deliver_now
+        if AgencyMailer.newsearch(agency, @user, @search, ).deliver_now
           @count += 1
         end
       end
     end
-    redirect_to search_path(params['search_id']), notice: @count.to_s + ' mails was successfully sent.'
+    redirect_to user_search_path(@user, @search), notice: @count.to_s + ' mails was successfully sent.'
   end
 
   def show
@@ -45,6 +44,7 @@ class SearchesController < ApplicationController
       redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
     else
       @search = Search.new
+      @user = User.find(1)
     end
   end
 
@@ -60,6 +60,7 @@ class SearchesController < ApplicationController
 
     else
       @search = Search.new(search_params)
+      @search.user_id = current_user.id
       @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
       @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
       @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
@@ -68,7 +69,7 @@ class SearchesController < ApplicationController
         if @search.save
           format.html {
             if user_signed_in?
-              redirect_to @search, notice: 'Search was successfully created.'
+              redirect_to user_search_url(current_user, @search), notice: 'Search was successfully created.'
             else
               redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
             end
@@ -86,7 +87,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.update(search_params_update)
-        format.html { redirect_to @search, notice: 'Search was successfully updated.' }
+        format.html { redirect_to user_search_url(current_user), notice: 'Search was successfully updated.' }
         format.json { render :show, status: :ok, location: @search }
       else
         format.html { render :edit }
@@ -98,7 +99,7 @@ class SearchesController < ApplicationController
   def destroy
     @search.destroy
     respond_to do |format|
-      format.html { redirect_to searches_url, notice: 'Search was successfully destroyed.' }
+      format.html { redirect_to user_searches_url(current_user), notice: 'Search was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -122,12 +123,14 @@ class SearchesController < ApplicationController
   end
 
   def set_search
-
     @search = Search.find(params[:id])
+  end
+  def set_user
+    @user = User.find(current_user)
   end
 
   def search_params
-    params.require(:search).permit(:price, :email, :username, :userid, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :option)
+    params.require(:search).permit(:price, :email, :username, :user_id, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :option)
   end
 
   def search_params_update
@@ -142,7 +145,7 @@ class SearchesController < ApplicationController
       @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
       end
     end
-    params.require(:search).permit(:price, :email, :username, :userid, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :text_for_agency, :option)
+    params.require(:search).permit(:price, :email, :username, :user_id, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :text_for_agency, :option)
   end
 end
 

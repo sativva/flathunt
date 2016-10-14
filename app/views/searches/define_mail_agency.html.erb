@@ -3,18 +3,18 @@
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <%= render 'agency_mailer/bodymail', search: @search %>
 
-      <%= simple_form_for(@search, html: {id: :edit_text_for_agency }) do |f| %>
+      <%= simple_form_for([current_user, @search], html: {id: :edit_text_for_agency }) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
-          <%= f.input :text_for_agency, label: 'ajouter du texte entre les deux paragraphes', input_html: {value: "Idéalement" }%>
+          <%= f.input :text_for_agency, label: 'Modifiez à vos souhaits ce mail', class: 'large-form', input_html: {value: (render 'agency_mailer/defaultmail', search: @search) }%>
         </div>
         <div class="form-actions">
-          <%= f.button :submit, "Apercu", class: "btn btn-primary btn-lg btn-block", input_html: {href: search_define_mail_agency_path }, notice: 'Search was successfully updated.' %>
+          <%= f.button :submit, "Apercu", class: "btn btn-primary btn-lg btn-block", input_html: {href: user_search_define_mail_agency_path(current_user, @search) }, notice: 'Search was successfully updated.' %>
         </div>
 
 
 
-      <%= link_to "C'est parti !", search_mail_agency_url(params['search_id']), class: "btn btn-primary btn-lg btn-block", id: "form_email" %>
+      <%= link_to "C'est parti !", user_search_mail_agency_url(@user, params['search_id']), class: "btn btn-primary btn-lg btn-block", id: "form_email" %>
       <% end %>
 
       <h1 class="text-center">La recherche de <%= @search.username%></h1>
@@ -66,7 +66,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function() {
     $('#edit_text_for_agency').on('submit', function(e) {
           e.preventDefault();
@@ -76,4 +76,4 @@ $(function() {
           this.submit();
     });
 });
-</script>
+</script> -->

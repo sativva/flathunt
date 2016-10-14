@@ -4,9 +4,9 @@
 
       <p id="notice"><%= notice %></p>
       <div class="display-center">
-      <%= link_to 'Modifier', edit_search_announce_path, class: "btn navigate navigate-grey" %>
-      <%= link_to 'Retour', search_path(@search), class: "btn navigate navigate-grey"  %>
-      <%= link_to 'Supprimer', search_announce_path, class: "btn navigate navigate-grey", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Modifier', edit_user_search_announce_path, class: "btn navigate navigate-grey" %>
+      <%= link_to 'Retour', user_search_path(@search), class: "btn navigate navigate-grey"  %>
+      <%= link_to 'Supprimer', user_search_announce_path, class: "btn navigate navigate-grey", method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to "Lien de l'annonce", @announce.link, class: "btn btn-primary navigate", target: "_blank" %>
       </div>
 
@@ -49,7 +49,7 @@
       <h3> <%= @announce.status %></h3>
 
 
-      <%= link_to 'Envoyer un mail "visité"', search_announce_visited_mail_url(@announce.search_id, @announce), class: "btn navigate navigate-grey" %>
+      <%= link_to 'Envoyer un mail "visité"', user_search_announce_visited_mail_url(@user, @search, @announce), class: "btn navigate navigate-grey" %>
       <p>
         <%= @announce.surface %> m2, <%= @announce.address %>, Etage: <%= @announce.floor %>, <%= @announce.room %> pièces
       </p>

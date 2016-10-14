@@ -1,5 +1,5 @@
 
-<%= simple_form_for([@search, @announce]) do |f| %>
+<%= simple_form_for([@user, @search, @announce]) do |f| %>
   <%= f.error_notification %>
   <% options =["cheminée", "parquet", "baignoire", "balcon", "terrasse", "toilette séparée", "cave", "parking", "calme", "ancien", "gardien"] %>
 
@@ -21,10 +21,11 @@
     <%= f.input :status, label: "Statut:"%>
     <%= f.input :comment %>
     <%= f.input :scd_visit %>
-    <%= f.input :search_id, input_html: { value: @search.id } %>
+    <%= f.input :search_id, input_html: { value: @search.id, class: "hidden" } %>
     <%= f.input :option, as: :text, label: 'Options', as: :check_boxes, display: "inline-block",  collection: options, input_html: { multiple: true } %>
   </div>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+

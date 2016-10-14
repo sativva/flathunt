@@ -5,8 +5,8 @@
 
       <%= render 'form', search: @search %>
 
-      <%= link_to 'Show', @search %> |
-      <%= link_to 'Back', searches_path %>
+      <%= link_to 'Show', user_search_path(current_user, @search) %> |
+      <%= link_to 'Back', user_searches_path(current_user) %>
 
     </div>
   </div>

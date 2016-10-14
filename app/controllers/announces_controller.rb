@@ -5,6 +5,7 @@ require 'mechanize'
 class AnnouncesController < ApplicationController
   before_action :set_announce, only: [:show, :edit, :update, :destroy]
   before_action :set_search
+  before_action :set_user
 
   def index
     @announces = Announce.all
@@ -28,7 +29,7 @@ class AnnouncesController < ApplicationController
       respond_to do |format|
         @announce.class != Announce ? @announce = @announce.first : @announce
         if @announce.save
-          format.html { redirect_to search_announce_path(@announce.search_id, @announce), notice: 'Announce was successfully created.' }
+          format.html { redirect_to user_search_announce_path(@search, @announce), notice: 'Announce was successfully created.' }
           format.json { render :show, status: :created, location: @announce }
         else
           format.html { render :new }
@@ -46,7 +47,7 @@ class AnnouncesController < ApplicationController
       respond_to do |format|
 
         if @announce.update(announce_params)
-          format.html { redirect_to search_announce_path(@announce.search_id, @announce), notice: 'Announce was successfully updated.' }
+          format.html { redirect_to user_search_announce_path(@user, @search, @announce), notice: 'Announce was successfully updated.' }
           format.json { render :show, status: :ok, location: @announce }
         else
           format.html { render :edit }
@@ -59,7 +60,7 @@ class AnnouncesController < ApplicationController
   def destroy
     @announce.destroy
     respond_to do |format|
-      format.html { redirect_to search_url(@search), notice: 'Announce was successfully destroyed.' }
+      format.html { redirect_to user_search_url(@user, @search), notice: 'Announce was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,9 +68,9 @@ class AnnouncesController < ApplicationController
   def visited_mail
     @announce = Announce.find(params['announce_id'])
     if AnnounceMailer.visited(@announce, @search).deliver_now
-    redirect_to search_announce_path(@search, @announce), notice: 'Votre mail est corectement parti.'
+    redirect_to user_search_announce_path(@user, @search, @announce), notice: 'Votre mail est corectement parti.'
     else
-    redirect_to search_announce_path(@search, @announce), notice: "Votre mail n'est pascorectement parti."
+    redirect_to user_search_announce_path(@user, @search, @announce), notice: "Votre mail n'est pascorectement parti."
   end
 
   end
@@ -106,7 +107,6 @@ class AnnouncesController < ApplicationController
         end
 
         respond_to do |format|
-
           if @announce.update({
             price: price,
             surface: surface,
@@ -125,7 +125,8 @@ class AnnouncesController < ApplicationController
             # guard: guard
             # option: option
             })
-            format.html { redirect_to search_announce_path(@announce.search_id, @announce), notice: 'Announce was successfully updated.' }
+
+            format.html { redirect_to user_search_announce_path(@user, @search, @announce), notice: 'Announce was successfully updated.' }
             format.json { render :show, status: :ok, location: @announce }
 
           else
@@ -152,11 +153,9 @@ class AnnouncesController < ApplicationController
         scripts.select{ |s| s['images_thumbs'] }.join.split(';').each do |l|
           if !l.match(/(..)(leboncoin.fr\/images\/)(.+)/).nil?
             link = l.match(/(..)(leboncoin.fr\/images\/)(.+)/)
-            p link
             photos <<  "http://img" + link[0].gsub((/\"/), "")
           elsif !l.match(/(..)(leboncoin.fr\/xxl\/)(.+)/).nil?
             link = l.match(/(..)(leboncoin.fr\/xxl\/)(.+)/)
-            p link
             photos <<  "http://img" + link[0].gsub((/\"/), "")
           end
         end
@@ -199,7 +198,7 @@ class AnnouncesController < ApplicationController
             # guard: guard
             # option: option
             })
-            format.html { redirect_to search_announce_path(@announce.search_id, @announce), notice: 'Announce was successfully updated.' }
+            format.html { redirect_to user_search_announce_path(@user, @announce.search_id, @announce), notice: 'Announce was successfully updated.' }
             format.json { render :show, status: :ok, location: @announce }
 
           else
@@ -218,6 +217,11 @@ class AnnouncesController < ApplicationController
     def set_search
       @search = Search.find(params['search_id'])
     end
+
+    def set_user
+      @user = User.find(params['user_id'])
+    end
+
 
     def announce_params
       params.require(:announce).permit(

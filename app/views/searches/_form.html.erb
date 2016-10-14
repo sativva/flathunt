@@ -1,12 +1,12 @@
-<%= simple_form_for(@search) do |f| %>
+<%= simple_form_for([ current_user, @search]) do |f| %>
   <%= f.error_notification %>
 
   <% etages = %w(-1 rdc 1 2 3 4 5 6 7) %>
   <% options =["cheminee", "parquet", "baignoire", "balcon", "terrasse", "toilette separee", "cave", "parking", "calme", "ancien", "gardien"] %>
   <div class="form-inputs">
-    <% if current_user %>
+    <% if current_user || !(@search.username.nil?) %>
       <%= f.input :username, label: 'Vos nom et prénom', input_html: { value: current_user.user_name} %>
-      <%= f.input :email, label: 'Votre email', input_html: { value: current_user.email}%>
+      <%= f.input :email, label: 'Votre email', input_html: { value: current_user.email} %>
     <% else %>
       <%= f.input :username, label: 'Vos nom et prénom' %>
       <%= f.input :email, label: 'Votre email' %>

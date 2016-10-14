@@ -8,11 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-
   # redirect to the form if there is a form_data in the session
     if session[:form_data].present?
 
-      new_search_path
+      new_user_search_path
 
     else
       #if there is not temp list in the session proceed as normal
@@ -21,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:user_name, :email, :password, :password_confirmation) }
   end
 end

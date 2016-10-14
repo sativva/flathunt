@@ -42,9 +42,9 @@
         <td><%= announce.comment %></td>
         <td><%= announce.guard %></td>
         <td><%= announce.option %></td>
-        <td><%#= link_to 'Show', search_announce_url(announce.id) %></td>
-        <td><%#= link_to 'Edit', edit_search_announce_path(announce) %></td>
-        <td><%#= link_to 'Destroy', search_announce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Show', user_search_announce_url(announce.id) %></td>
+        <td><%#= link_to 'Edit', edit_user_search_announce_path(announce) %></td>
+        <td><%#= link_to 'Destroy', user_search_announce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -52,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Announce', new_search_announce_path %>
+<%= link_to 'New Announce', new_user_search_announce_path %>

@@ -1,11 +1,17 @@
 .card {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 300px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: white;
   position: relative;
+  i {
+    font-size: 52px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
 }
 .card-user {
   position: absolute;
@@ -21,18 +27,21 @@
 }
 .card-description {
   h1 {
-    font-size: 152px;
+    font-size: 42px;
   }
+  h2 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 24px;
+  }
+
   position: absolute;
   bottom: 10px;
   left: 10px;
 }
-.card-description h2 {
-  font-size: 24px;
-}
-.card-description p {
-  font-size: 24px;
-  }
+.card-description
+.card-description
 .card-link {
   position: absolute;
   top: 0;
@@ -54,4 +63,13 @@
 }
 #orange {
   background: orange;
+}
+#green {
+  background: $green;
+}
+#grey {
+  background: grey;
+}
+.logo-partner {
+  height: 70px;
 }

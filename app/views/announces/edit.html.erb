@@ -4,10 +4,10 @@
 
       <h1>Modifier l'annonce</h1>
 
-      <%= render 'form', search: @search, announce: @announce %>
+      <%= render 'form', user: @user, search: @search, announce: @announce %>
 
-      <%= link_to 'Show', search_announce_path(@announce) %> |
-      <%= link_to 'Back', search_announces_path %>
+      <%#= link_to 'Show', user_search_announce_path(@user, @search, @announce) %> |
+      <%= link_to 'Back', user_search_announces_path %>
     </div>
   </div>
 </div>

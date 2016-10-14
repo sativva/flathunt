@@ -1,21 +1,15 @@
 <div class="container home" >
   <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-
-      <p id="notice"><%= notice %></p>
-      <div class="display-center">
-      <%= link_to 'Ajouter un nouvel appartement', new_search_announce_path(@search), class: 'btn btn-primary navigate' %>
-
+    <p id="notice"><%= notice %></p>
+    <div class="col-xs-12 col-sm-4">
+      <%= link_to 'Ajouter un nouvel appartement', new_user_search_announce_path(current_user, @search), class: 'btn btn-primary navigate' %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
       <% arrondissements = @search.location.gsub(/\ /,"").gsub('750', '7501') %>
       <% se_loger_link = "http://www.seloger.com/list.htm?pxmin=#{@search.price.to_i - 200000}&pxmax=#{@search.price}&surfacemin=#{@search.surface}&idtt=2&idtypebien=1,2,9&ci=#{arrondissements}&tri=d_dt_crea&idpublication=&LISTING-LISTpg=1"%>
       <%= link_to "Lancer la recherche se loger", se_loger_link, class: 'btn btn-primary navigate', target: "_blank" %>
-
-
-
-
-
-
-
+    </div>
+    <div class="col-xs-12 col-sm-4">
       <% if @search.location.split(',').length > 3 %>
         <% onclick = ""%>
         <% le_bon_coin_link =  "javascript:void(0);"%>
@@ -35,9 +29,10 @@
         <% end %>
       <% end %>
       </div>
-      <% agency = Agency.last %>
-      <%= link_to 'Envoyer un mail a toutes les agences', search_define_mail_agency_url(@search) %> |
-      <%= link_to 'Modifiez', edit_search_path %> |
+    </div>
+
+      <%= link_to 'Envoyer un mail a toutes les agences', user_search_define_mail_agency_url(current_user, @search) %> |
+      <%= link_to 'Modifiez', edit_user_search_path %> |
       <%= link_to 'Retour', user_path(current_user) %>
 
       <h1 class="text-center">La recherche de <%= @search.username%></h1>
@@ -89,7 +84,7 @@
 
 
       <% @announces.each do |a| %>
-        <%= link_to search_announce_path(@search, a), class: "announce-card" do %>
+        <%= link_to user_search_announce_path(current_user, @search, a), class: "announce-card" do %>
 
         <div class="background-appt" style="background-image: linear-gradient(135deg, rgba(205,237,47,0.5) 0%,rgba(83,109,20,0.8) 50%), url(<%= a.photos.nil? ? "http://www.kadences-deco.fr/wp-content/uploads/2015/07/appartement-design-730x430.jpg" : a.photos.split(',').first %>)">
         <h1><%= a.address.upcase %></h1>

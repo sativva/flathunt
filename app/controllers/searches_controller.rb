@@ -57,16 +57,15 @@ class SearchesController < ApplicationController
        session[:form_data] = params
        # Redirect the user to register/login
        redirect_to new_user_registration_path
+
     else
-      @search = Search.new(search_params)
       binding.pry
+      @search = Search.new(search_params)
       @search.user_id = current_user.id
       @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
       @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
       @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
-
       respond_to do |format|
-
         if @search.save
           format.html {
             if user_signed_in?
@@ -85,7 +84,6 @@ class SearchesController < ApplicationController
   end
 
   def update
-
     respond_to do |format|
       if @search.update(search_params_update)
         format.html { redirect_to user_search_url(current_user), notice: 'Search was successfully updated.' }

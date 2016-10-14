@@ -59,6 +59,7 @@ class SearchesController < ApplicationController
        redirect_to new_user_registration_path
 
     else
+      binding.pry
       @search = Search.new(search_params)
       # @search.user_id = current_user.id
       @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
@@ -66,6 +67,7 @@ class SearchesController < ApplicationController
       @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
 
       respond_to do |format|
+        binding.pry
         if @search.save
           format.html {
             if user_signed_in?
@@ -148,18 +150,6 @@ class SearchesController < ApplicationController
     params.require(:search).permit(:price, :email, :username, :user_id, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :text_for_agency, :option)
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

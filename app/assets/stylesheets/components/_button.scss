@@ -1,0 +1,57 @@
+.btn, .btn-default {
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent !important;
+  text-align: center;
+  letter-spacing: .5px;
+  -webkit-transition: none !important;
+  transition: none !important;
+  border: none !important;
+  border-radius: 5px;
+  cursor: pointer;
+  // border: none !important;
+  box-shadow: none !important;
+  padding-bottom: 10px;
+}
+
+.btn-bb {
+  padding: 0px 10px;
+  margin: 0 21px;
+  text-align: center;
+  border: solid 1px $blue;
+  border-radius: 5px;
+  color: white;
+  background: transparent;
+  &:hover {
+    border: solid 1px $orange;
+  }
+}
+
+.btn-small {
+  padding-bottom: 10px;
+  i {
+    margin-right: 5px;
+    margin-top: 4px;
+  }
+  &:hover {
+    border-bottom: solid 1px $orange;
+    cursor: pointer;
+    padding-bottom: 9px;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.btn-nb {
+  padding-bottom: 10px;
+  color: white;
+  font-weight: lighter;
+  margin-right: 8px;
+
+  &:hover {
+    padding-bottom: 9px;
+    border-bottom: solid 1px $orange;
+    cursor: pointer;
+  }
+}

@@ -1,11 +1,16 @@
-<div class="navbar-wagon-fixed navbar-wagon">
+
+
+
+
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/dg4tuv6gd/image/upload/v1476357701/yesmyflat_xg3nbm.jpg", class: "logo" %>
+    <h1> BiensBiens - Paris </h1>
+    <br style="height: 0;">
+    <p> Faciliter votre projet d'achat </p>
   <% end %>
-  <h2 class="title-logo hidden-xs hidden-sm"><span class="big">y</span>es My Flat</h2>
+
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <div class="navbar-wagon-right hide-on-med-and-down">
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
@@ -14,9 +19,7 @@
       <!-- add_agency -->
       <%= link_to "+ agence", new_agency_path, class: "btn navbar-wagon-button " %>
       <!-- new_search -->
-      <%= link_to "Nouvelle recherche", new_user_search_path(current_user.id), class: "btn navbar-wagon-button" %>
-
-
+      <%= link_to "Nouvelle recherche", new_search_path(current_user.id), class: "btn navbar-wagon-button" %>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -45,12 +48,13 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_up", default: "Inscription"), new_user_registration_path, class: "btn-nb" %>
+      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "btn-nb" %>
 
     <% end %>
     </div>
     <!-- Dropdown list appearing on mobile only -->
-      <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="navbar-wagon-item hide-on-large-only">
         <div class="dropdown">
           <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -67,5 +71,14 @@
         </div>
       </div>
 
-  </div>
 
+  <script>
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 500) {
+            $("#navbar").addClass("opacitylight");
+        } else {
+            $("#navbar").removeClass("opacitylight");
+        }
+    });
+  </script>

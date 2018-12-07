@@ -1,8 +1,14 @@
 
 <div class="container home" >
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h2>Sign up</h2>
+    <div class="col s12 m6 offset-m3 banner-content regnew">
+      <h1>Inscription</h1>
+      <p>Vous inscrire vous permettra de sauvegarder toutes vos annonces au même endroit, de les annoter, de les partager, de créer des évenements ical pour vos visites</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m6 offset-m3 banner-content regnew">
+
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
@@ -13,12 +19,13 @@
           <%= f.input :user_name, required: true, autofocus: true %>
           <%= f.input :email, required: true, autofocus: true %>
         <% end %>
-
-
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password, required: true %>
           <%= f.input :password_confirmation, required: true %>
         </div>
 
+        <% if !params['searchid'].nil? %>
+          <%= f.input :search_id,  input_html: {value: params['searchid']} %>
+        <% end %>
         <div class="form-actions">
           <%= f.button :submit, "Sign up" %>
         </div>

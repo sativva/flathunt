@@ -1,0 +1,8 @@
+<% set_partner_links(@search).each do |pl|%>
+  <script>window.open('<%=pl%>'); </script>
+<% end %>
+<script>
+$(document).ready(function() {
+  document.location.href="/users/sign_up?searchid=" + <%=@search.id%>;
+});
+</script>

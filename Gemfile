@@ -9,18 +9,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', github: 'plataformatec/devise'
 gem 'redis'
 gem 'geocoder'
-gem 'algoliasearch-rails'
 
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
-gem 'bootstrap-sass'
+gem 'materialize-sass'
+gem 'materialize-form'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 gem 'postmark-rails'
 gem 'sendgrid-ruby'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem "letter_opener"

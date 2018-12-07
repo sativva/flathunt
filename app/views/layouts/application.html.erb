@@ -5,13 +5,25 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <link rel="icon" href="http://res.cloudinary.com/dg4tuv6gd/image/upload/v1476362311/favicon_l4zkpa.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <% if controller.controller_name == 'pages' && controller.action_name == 'home' %>
+      <div id="navbar" class="navbar-wagon-fixed navbar-wagon nv-home">
+        <%= render 'shared/navbar' %>
+      </div>
+    <% else %>
+      <div id="navbar" class="navbar-wagon-fixed navbar-wagon nv-nothome">
+        <%= render 'shared/navbar' %>
+      </div>
+    <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <%#= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>

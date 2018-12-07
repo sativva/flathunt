@@ -8,7 +8,7 @@
         <!-- <div class="searches"> -->
           <% @searches.each do |search| %>
             <div class="col-sm-4">
-            <%= link_to user_search_path(current_user, search.id) do %>
+            <%= link_to search_path(current_user, search.id) do %>
 
                 <div class="search-card" id=<%=color.sample%>>
                  <h1><%= search.username %></h1>

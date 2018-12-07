@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require materialize-sprockets
+//= require materialize-form
 //= require_tree .
 

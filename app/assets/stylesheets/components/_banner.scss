@@ -1,7 +1,10 @@
 .banner {
+  position: relative;
+  top: -70px;
   color: white;
   text-align: center;
   height: 100vh;
+  min-height: 700px;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -10,11 +13,6 @@
 
  h1 {
     color: $white;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 10px;
-    font-size: 50px;
-    font-weight: bold;
-
   }
   p {
     font-size: 20px;
@@ -25,5 +23,13 @@
 
 }
 .banner-content {
-  width:100%;
+  width:50%;
+  color: white;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+
+  .control-label{
+    color: white;
+  }
 }

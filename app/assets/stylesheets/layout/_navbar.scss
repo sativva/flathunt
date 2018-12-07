@@ -1,14 +1,24 @@
 /* Main class */
+.nv-home {
+  margin-top:0;
+}
+.nv-nothome {
+  // background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px 458px;
+  background-image:linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%),url("http://patrimoine.lesechos.fr/medias/2015/05/04/1116614_immobilier-la-demande-repart-a-paris-web-tete-02146783028.jpg");
+}
 .navbar-wagon {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: $white;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
+  z-index: 1;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
-  font-family: Noteworthy;
+  font-family: Helvetica;
+  color: $white;
+
 }
 
 /* Optional class to fix the navbar on top */
@@ -21,8 +31,22 @@
 }
 
 /* Navbar logo */
-.navbar-wagon-brand img {
-  width: 50px;
+.navbar-wagon-brand {
+  color: $white;
+  line-height: 0px;
+  font-family: Roboto;
+  font-weight: thin;
+  h1 {
+    font-size: 30px;
+    font-weight: lighter;
+    margin: 0;
+
+  }
+  p {
+    line-height: 0px;
+    font-weight: lighter;
+    margin-top: 2px;
+  }
 }
 
 /* Navbar right section (with form, links, button) */
@@ -41,11 +65,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: $white;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  // color: #da552f;
   text-decoration: none;
 }
 
@@ -56,14 +80,14 @@
   border-radius: 5px;
   line-height: 40px;
   background-color: white;
-  color: $blue;
+  color: blue;
   font-size: 14px;
-  border: 2px solid $blue;
+  border: 2px solid blue;
 }
 .navbar-wagon-button:hover {
   color: white;
-  background: $blue;
-  border-color: $blue;
+  background: blue;
+  border-color: blue;
 }
 
 /* Navbar search form */
@@ -144,4 +168,8 @@
 
   // font-family: 'Rubik', sans-serif;
   // font-family: 'Comfortaa', cursive;
+}
+.opacitylight {
+  background:linear-gradient(to bottom, rgba(130,130,130,0.8), rgba(130,130,130,0));
+  opacity: 0.9;
 }

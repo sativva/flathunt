@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @searches = Search.where(user_id: current_user.id)
+    @searches = []
+    @searches << Search.find(current_user.search_id)
   end
 
   # GET /users/new

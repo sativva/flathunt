@@ -1,41 +1,76 @@
-<div class="banner" style="background-image: linear-gradient(135deg, rgba(230,240,163,0.4) 0%,rgba(251,232,211,0.4) 100%,rgba(219,240,67,0.4) 100%), url('http://www.planete-deco.fr/wp-content/uploads/2012/01/ADUP2.jpg');">
+<div class="banner" style="background-image: linear-gradient(-12deg, rgba(209,91,91,0.17) 8%, #5D5D72 100%), url('http://www.planete-deco.fr/wp-content/uploads/2012/01/ADUP2.jpg');">
   <div class="banner-content">
-    <h1>Trouvez l'appartement de vos rêves</h1>
-    <!-- <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Dites-nous ce que vous cherchez</a> -->
-    <%= link_to 'Dites-nous ce que vous cherchez', new_user_registration_path, class: "btn btn-primary btn-lg"%>
-  </div>
-</div>
+    <%= simple_form_for(@search) do |f| %>
+      <%= f.error_notification %>
+      <% etages = %w(-1 rdc 1 2 3 4 5 6 7) %>
+      <% options =["cheminee", "parquet", "baignoire", "balcon", "terrasse", "toilette separee", "cave", "parking", "calme", "ancien", "gardien"] %>
+      <div class="form-inputs">
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title text-center" id="myModalLabel">Soumettez-nous votre recherche</h3>
-        <h6 class="text-center">Nous reviendrons vers vous sous 48h, pour notre premier rendez-vous.</h6>
-      </div>
-      <div class="modal-body">
-        <%#= render 'searches/form', search: @search %>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- modal -->
-<div class="container">
-
-  <div class="row">
-    <div class="col-xs-12 col-md-4">
-      <div class="card" id="blue" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-        <i class="fa fa-sign-in" aria-hidden="true"></i>
-        <div class="card-description">
-          <h1>Créez un compte</h1>
-          <p>Facilement avec facebook, ou avec votre email</p>
+      <!-- STEP 1 -->
+        <div id="step1">
+          <div id="alert1" class="hide">Il faut remplir tous les champs
+          </div>
+          <%= f.input :price, label: 'Votre budget' %>
+          <%= f.input :surface, label: 'Surface minimum' %>
+          <%= f.input :location, label: 'Arrondissements', display: "inline-block",  collection: 75001..75020, input_html: { multiple: true, id: "search_location", value: "" } %>
+          <div class="valign-wrapper">
+            <div id="next_to_step_2" class="valign-wrapper btn-small">
+              <i class="material-icons">add_circle_outline</i>
+              <p>plus de critères</p>
+            </div>
+            <%= link_to root_path do %>
+              <div class="btn-bb" id="home-search">
+                  <div class="form-actions">
+                    <%= f.button :submit, "C'est parti !", class: "btn-bb" %>
+                  </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
+      <!-- STEP 2 -->
+        <div id="step2" class="hide">
+          <%= f.input :floor, label: 'Etages', display: "inline-block",  collection: etages, input_html: { multiple: true, checked: true, class: "hidden" }%>
+          <%= f.input :lift, label: 'Ascenseur indispensable ?' do %>
+            <div class="switch">
+              <label>
+                Non
+                <input type="checkbox">
+
+                <span class="lever"></span>
+                Oui
+              </label>
+            </div>
+          <% end %>
+          <%= f.input :room, label: 'Nombre de pièce minimum', collection: 1..10 %>
+          <%= f.input :bedroom, label: 'Nombre de chambre minimum', collection: 1..10 %>
+          <%= f.input :to_renovate, label: 'Travaux', collection: ["Pourquoi pas", "Hors de question"] %>
+          <%= f.input :comment, label: 'Vos précisions' %>
+          <%#= f.input :text_for_agency, label: 'agency-mailer' %>
+          <%= f.input :option, label: 'Options',  collection: options, input_html: { multiple: true } %>
+          <div class="valign-wrapper">
+              <div id= "back_to_step_1" class="valign-wrapper">
+                <div class="btn-small">
+                  <p>retour</p>
+                </div>
+              </div>
+              <%= link_to root_path do %>
+                <div class="btn-bb" id="home-search">
+                  <div class="form-actions">
+                    <%= f.button :submit, "C'est parti !", class: "btn btn-primary btn-lg btn-block" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- BLOCK -->
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4">
       <div class="card" id="red" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         <div class="card-description">
@@ -44,34 +79,62 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col s12 m4">
       <div class="card" id="orange" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
         <i class="fa fa-search" aria-hidden="true"></i>
         <div class="card-description">
           <h1>Lancer les recherches</i></h1>
-          <p>Sur seLoger et leboncoin</p>
-<!--           <img src="http://static.ladepeche.fr/content/media/image/zoom/2016/02/10/yuwarsf1-fe735114026-original.jpg" alt="" class="logo-partner">
-          <img src="http://bimby.fr/sites/bimby.fr/files/styles/lightbox/public/field/image/03926348-photo-seloger-logo.jpg?itok=g-OVxIly" alt="" class="logo-partner"> -->
+          <p>Sur seLoger, le bon coin, P à P et logicimmo</p>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col s12 m4">
       <div class="card" id="green" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
         <i class="fa fa-share-square" aria-hidden="true"></i>
         <div class="card-description">
-          <h1>Partagez</i></h1>
+          <h1>Partager</i></h1>
           <p>Avec vos proches les annonces qui vous plaisent</p>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col s12 m4">
       <div class="card" id="grey" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
         <div class="card-description">
-          <h1>Contacter toutes les agences</i></h1>
-          <p>Par arrondissements, en écrivant un seul email</p>
+          <h1>Sauvegarder vos annonces</i></h1>
+          <p>Annotez-les, créez des évènements iCal</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  // function next_step1() {
+  // document.getElementById("step1").style.display = "none";
+  // document.getElementById("step2").style.display = "block";
+  // }
+
+
+  $("#next_to_step_2").click(function(event) {
+    var a=document.getElementById("search_price").value;
+    var b=document.getElementById("search_surface").value;
+    var c=document.getElementById("search_location").value;
+    if (a==null || a=="",b==null || b=="",c==null || c=="") {
+      $('#alert1').removeClass('hide');
+      return false;
+    } else {
+      $('#step2').removeClass('hide');
+      $('#step1').addClass('hide');
+    }
+    });
+  $("#back_to_step_1").click(function(event) {
+      $('#step1').removeClass('hide');
+      $('#step2').addClass('hide');
+    });
+  var inputBox = document.getElementById('user_search_price');
+  inputBox.onkeyup = function(){
+    document.getElementById('user_search_price').value = inputBox.value.replace(/(\d{3})(?=(\d)+(?!\d{3}))/g, "$1 ");
+  }
+
+</script>

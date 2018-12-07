@@ -11,7 +11,6 @@ class AnnounceMailer < ApplicationMailer
     @search = search
     @user = @search.username
 
-
     mail(to: @search.email, bcc: "t.rondio@free.fr", subject: "J'ai effectué une visite pour vous")
   end
 end

@@ -1,12 +1,11 @@
 // Graphical variables
-@import "config/variables";
-@import "config/bootstrap_variables";
 
+
+@import "config/variables";
 // External libraries
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
 
 // Your CSS
 @import "layout/index";
@@ -17,8 +16,20 @@
 @import "searches.scss";
 @import "announces.scss";
 @import "mail.scss";
+@import "registrations";
+// @import "materialize/components/color";
+// // $primary-color: blue !default;
+// // blue: blue;
+// $secondary-color: #AD0008 !default;
+@import 'materialize';
 
 body {
   margin-top: 70px;
-
 }
+// #bobo {
+//   background: blue;
+//   height: 4000px;
+//   width: 5000px;
+//   position: fixed;
+//   top: 40px;
+// }

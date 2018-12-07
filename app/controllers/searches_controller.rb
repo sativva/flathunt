@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :set_user
+  # before_action :set_user
   before_action :set_search, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [ :new, :create ]
 
@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
   def index
     @searches = Search.all
   end
+
   def define_mail_agency
     @search = Search.find(params['search_id'])
   end
@@ -33,9 +34,8 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @price_max = boncoin(@search.price)
-    @surface_bc = boncoin_surface(@search.surface)
     @announces = Announce.where(search_id: @search).reverse
+    @partner_links = set_partner_links
   end
 
   def new
@@ -44,7 +44,7 @@ class SearchesController < ApplicationController
       redirect_to root_path, notice: 'La recherche a correctement été crée. Nous revenons vers vous très rapidement. '
     else
       @search = Search.new
-      @user = User.find(1)
+      @user = User.find(current_user)
     end
   end
 
@@ -53,17 +53,31 @@ class SearchesController < ApplicationController
 
   def create
     if current_user.nil?
-       # Store the form data in the session so we can retrieve it after login
-       session[:form_data] = params
-       # Redirect the user to register/login
-       redirect_to new_user_registration_path
+      @search = Search.new(search_params)
+      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
+      @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
+      @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+      if @search.save
+        cookies[:search_id] = {
+              :value => @search.id,
+              :expires => 1.year.from_now
+            }
+        redirect_to redirect_path(@search)
+      else
+        redirect_to root_path
+      end
+      cookies[:search_id] = {
+            :value => 'a yummy cookie',
+            :expires => 1.year.from_now,
+            :domain => 'domain.com'
+          }
 
     else
       @search = Search.new(search_params)
       @search.user_id = current_user.id
-      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "")
-      @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "")
-      @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "")
+      @search.floor = params['search']['floor'].join(',').strip.gsub(/^,/, "") if params['search']['floor']
+      @search.location = params['search']['location'].join(',').strip.gsub(/^,/, "") if params['search']['location']
+      @search.option = params['search']['option'].join(',').strip.gsub(/^,/, "") if params['search']['option']
       respond_to do |format|
         if @search.save
 
@@ -105,22 +119,6 @@ class SearchesController < ApplicationController
 
   private
 
-  def boncoin(price)
-    price_max = price.to_i.round(-5).to_s
-    price_bc = %w(0 25000 50000 75000 100000 125000 150000 175000 200000 225000 250000 275000 300000 325000 350000 400000 450000 500000 550000 600000 650000 700000 800000 900000 1000000 1100000 1200000 1300000 1400000 1500000 2000000)
-    if price_bc.include?(price_max)
-      price_max = price_bc.index(price_max)
-    end
-  end
-
-  def boncoin_surface(surface)
-    surface_max = surface.to_i.round(-1).to_s
-    surface_bc = %w(0 20 25 30 35 40 50 60 70 80 90 100 110 120 130 140 150 200 300)
-    if surface_bc.include?(surface_max)
-      surface_max = surface_bc.index(surface_max)
-    end
-  end
-
   def set_search
     @search = Search.find(params[:id])
   end
@@ -129,7 +127,7 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:price, :email, :username, :user_id, :location, :floor, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :option)
+    params.require(:search).permit(:price, :email, :username, :user_id, :lift, :surface, :room, :bedroom, :to_renovate, :comment, :option, location: [], floor: [])
   end
 
   def search_params_update

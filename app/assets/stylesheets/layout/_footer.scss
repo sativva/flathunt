@@ -4,11 +4,11 @@ html{ height:100%; }
 body{ min-height:100%; padding:0; margin:0; position:relative; }
 body:after{ content:''; display:block; height:68px; }
 .footer {
-  position:absolute;
+  position: fixed;
   width: 100%;
   bottom:0;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: $blue;
+  background: blue;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
@@ -65,15 +65,7 @@ body:after{ content:''; display:block; height:68px; }
   padding: 0 20px;
 }
 
-/* Navbar standard link */
-.navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
-}
-.navbar-wagon-link:hover {
-  color: #da552f;
-  text-decoration: none;
-}
+
 
 /* Navbar right button */
 .navbar-wagon-button {
@@ -160,7 +152,7 @@ body:after{ content:''; display:block; height:68px; }
   border-radius: 25%;
 }
 .title-logo {
-  font-family: 'Nunito', sans-serif;
+  // font-family: 'Nunito', sans-serif;
   // font-family: 'Rubik', sans-serif;
   // font-family: 'Comfortaa', cursive;
 }

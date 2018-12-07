@@ -23,6 +23,9 @@
 }
 .photo-carousel {
   object-fit: cover;
+
+    display: block !important;
+
 }
 .display-center {
   text-align: center;
@@ -48,4 +51,14 @@
 }
 .price {
   margin-top: 3px;
+}
+
+.modal-mail {
+  width: auto;
+  margin: 100px;
+  text-align: center;
+  z-index: 10;
+  .form-group {
+    text-align: left;
+  }
 }

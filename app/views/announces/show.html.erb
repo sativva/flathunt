@@ -5,7 +5,7 @@
       <p id="notice"><%= notice %></p>
       <div class="display-center">
       <%= link_to 'Modifier', edit_user_search_announce_path, class: "btn navigate navigate-grey" %>
-      <%= link_to 'Retour', user_search_path(@search), class: "btn navigate navigate-grey"  %>
+      <%= link_to 'Retour', user_search_path(current_user, @search), class: "btn navigate navigate-grey"  %>
       <%= link_to 'Supprimer', user_search_announce_path, class: "btn navigate navigate-grey", method: :delete, data: { confirm: 'Are you sure?' } %>
       <%= link_to "Lien de l'annonce", @announce.link, class: "btn btn-primary navigate", target: "_blank" %>
       </div>
@@ -48,8 +48,12 @@
       </h1>
       <h3> <%= @announce.status %></h3>
 
+      <!-- Button trigger modal -->
+           <button type="button" class="btn navigate navigate-grey" data-toggle="modal" data-target="#myModal">
+             Partager
+           </button>
 
-      <%= link_to 'Envoyer un mail "visité"', user_search_announce_visited_mail_url(@user, @search, @announce), class: "btn navigate navigate-grey" %>
+      <%= link_to 'Partager', user_search_announce_visited_mail_url(@user, @search, @announce), class: "btn navigate navigate-grey" %>
       <p>
         <%= @announce.surface %> m2, <%= @announce.address %>, Etage: <%= @announce.floor %>, <%= @announce.room %> pièces
       </p>
@@ -64,7 +68,7 @@
         <% if !@announce.price.nil? && (!@announce.surface.nil? && @announce.surface != 0) %>
         <%= @announce.price / @announce.surface %> €/m2 |
         <% end %>
-         <%= @announce.lift ? "Il y a un ascenseur" : "Il n'y a pas d'ascenseur" %>
+         <%= "Il y a un ascenseur" if @announce.lift %>
       </p>
 
       <p>
@@ -87,3 +91,34 @@
   </div>
 </div>
 
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-mail" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h1>Partager par mail cette annonce</h1>
+              <form class="form-group">
+                <label for="from">From:</label>
+                <p id="from"><%=current_user.email%></p>
+                <label for="To:">To:</label>
+                <input class="form-control" id="To:" type="text">
+                <label for="CC:">CC:</label>
+                <input class="form-control" id="CC:" type="text">
+                <label for="objet">Objet:</label>
+                <input class="form-control" id='objet' type="text" value="J'ai vu cette annonce">
+              </form>
+            </div>
+            <div class="modal-body">
+              <%= render "announce_mailer/bodymail"%>
+            </div>
+            <div class="modal-footer">
+
+              <%= button_to 'Envoyer', user_search_announce_visited_mail_url(@user, @search, @announce), method: "get", type: "submit", class: "btn navigate navigate-grey", To: "form-data['To:']" %>
+            </div>
+          </div>
+        </div>
+      </div>

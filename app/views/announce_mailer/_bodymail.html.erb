@@ -1,0 +1,51 @@
+
+
+
+  <div class="col-xs-12">
+    <label for="mail-content">Message</label>
+    <input class="form-control" type="text" id="mail-content">
+    <h1 class="price">
+      <%= @announce.price %> €
+    </h1>
+    <h3> <%= @announce.status %></h3>
+
+    <p>
+      <%= @announce.surface %> m2, <%= @announce.address %>, Etage: <%= @announce.floor %>, <%= @announce.room %> pièces
+    </p>
+    <p class="comment">
+      <%= @announce.comment %>
+    </p>
+
+    <p>
+      <% if !@announce.price.nil? %>
+      <strong>Frais de notaire:</strong> <%= @announce.price * 0.08 %> |
+      <% end %>
+      <% if !@announce.price.nil? && (!@announce.surface.nil? && @announce.surface != 0) %>
+      <%= @announce.price / @announce.surface %> €/m2 |
+      <% end %>
+       <%= @announce.lift ? "Il y a un ascenseur" : "Il n'y a pas d'ascenseur" %>
+    </p>
+
+    <p>
+      <strong>Agence:</strong>
+      <%= @announce.agency %>
+    </p>
+
+
+    <p>
+      <%#= if @announce.to_renovate ? "Travaux à prévoir" : "" %>
+    </p>
+
+
+    <p>
+      <%# if @announce.option.any? ? @announce.option : "" %>
+    </p>
+
+  <div class="images"> <!-- Carousel -->
+    <% if !@announce.photos.nil?%>
+      <% @announce.photos.split(",").each do |photo| %>
+        <img src=<%= photo %> alt="..." class="photo-mail">
+      <% end %>
+    <% end %>
+  </div>
+
